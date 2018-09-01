@@ -1,0 +1,99 @@
+.site-right-item{
+    border:1px solid #555555;
+    border-top: none;
+    padding: 2px 10px 10px 10px;;
+}
+a.site-right-item-head{
+    display: block;
+    color: #ffffff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+}
+a.site-right-item-body{
+    display: block;
+    text-decoration: none;
+    padding-bottom: 5px;
+    color: #777;
+    margin-top: 5px;
+}
+a.site-right-item-footer{
+    margin-top: 5px;
+    display: block;
+    color: #777;
+    font-size: 12px;
+
+}
+/* 左 */
+#echarts_left div{
+    padding:0px;
+    margin:0px;
+    width: 100%;
+    height:30%;
+    border-bottom: 1px solid #555555;
+    border-right: 1px solid #555555;
+}
+#left_list div{
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border: none;
+}
+#left_list span{
+    display: block;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+#span_btn{
+
+}
+#span_num{
+    width: 100%;
+    color: #0090F9;
+    font-size: 16px;
+    padding-bottom: 6px;
+    font-weight: bold
+}
+
+/* 关键词管理按钮 */
+#btnKeyWord{
+    letter-spacing: 1px;
+    border: none;
+    box-shadow: 0px 0px 5px #0090F9;
+    background: transparent;
+    color: #cccccc;
+}
+select#keyWords{
+    width: 80%;
+    border: none;
+    box-shadow: 0px 0px 5px #0090F9;
+    background: transparent;
+    color:#0090F9;
+}
+
+.modal-body-title{
+    padding: 5px 120px;
+    text-align: center;
+    font-weight: bold;
+}
+.modal-body-title h3{
+    line-height: 40px;
+    letter-spacing: 1px;
+}
+.modal-body-time{
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #dddddd;
+    font-size: 15px;
+}
+.modal-body-body{
+    padding: 20px 50px;
+    line-height: 30px;
+    font-size: 16px;
+}
+/* 多行省略 */
+.td_more{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}

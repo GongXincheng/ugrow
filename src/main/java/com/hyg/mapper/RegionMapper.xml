@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hyg.mapper.RegionMapper" >
+  <resultMap id="BaseResultMap" type="com.hyg.entity.Region" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="ParentId" property="parentid" jdbcType="INTEGER" />
+    <result column="ShortName" property="shortname" jdbcType="VARCHAR" />
+    <result column="LevelType" property="leveltype" jdbcType="INTEGER" />
+    <result column="CityCode" property="citycode" jdbcType="VARCHAR" />
+    <result column="ZipCode" property="zipcode" jdbcType="VARCHAR" />
+    <result column="MergerName" property="mergername" jdbcType="VARCHAR" />
+    <result column="Lng" property="lng" jdbcType="REAL" />
+    <result column="Lat" property="lat" jdbcType="REAL" />
+    <result column="Pinyin" property="pinyin" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Id, Name, ParentId, ShortName, LevelType, CityCode, ZipCode, MergerName, Lng, Lat, 
+    Pinyin
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hyg.entity.RegionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from region
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from region
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from region
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hyg.entity.RegionExample" >
+    delete from region
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hyg.entity.Region" >
+    insert into region (Id, Name, ParentId, 
+      ShortName, LevelType, CityCode, 
+      ZipCode, MergerName, Lng, 
+      Lat, Pinyin)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{shortname,jdbcType=VARCHAR}, #{leveltype,jdbcType=INTEGER}, #{citycode,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{mergername,jdbcType=VARCHAR}, #{lng,jdbcType=REAL}, 
+      #{lat,jdbcType=REAL}, #{pinyin,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyg.entity.Region" >
+    insert into region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="parentid != null" >
+        ParentId,
+      </if>
+      <if test="shortname != null" >
+        ShortName,
+      </if>
+      <if test="leveltype != null" >
+        LevelType,
+      </if>
+      <if test="citycode != null" >
+        CityCode,
+      </if>
+      <if test="zipcode != null" >
+        ZipCode,
+      </if>
+      <if test="mergername != null" >
+        MergerName,
+      </if>
+      <if test="lng != null" >
+        Lng,
+      </if>
+      <if test="lat != null" >
+        Lat,
+      </if>
+      <if test="pinyin != null" >
+        Pinyin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        #{leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergername != null" >
+        #{mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=REAL},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=REAL},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hyg.entity.RegionExample" resultType="java.lang.Integer" >
+    select count(*) from region
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update region
+    <set >
+      <if test="record.id != null" >
+        Id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        Name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentid != null" >
+        ParentId = #{record.parentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shortname != null" >
+        ShortName = #{record.shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leveltype != null" >
+        LevelType = #{record.leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="record.citycode != null" >
+        CityCode = #{record.citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipcode != null" >
+        ZipCode = #{record.zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mergername != null" >
+        MergerName = #{record.mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lng != null" >
+        Lng = #{record.lng,jdbcType=REAL},
+      </if>
+      <if test="record.lat != null" >
+        Lat = #{record.lat,jdbcType=REAL},
+      </if>
+      <if test="record.pinyin != null" >
+        Pinyin = #{record.pinyin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update region
+    set Id = #{record.id,jdbcType=INTEGER},
+      Name = #{record.name,jdbcType=VARCHAR},
+      ParentId = #{record.parentid,jdbcType=INTEGER},
+      ShortName = #{record.shortname,jdbcType=VARCHAR},
+      LevelType = #{record.leveltype,jdbcType=INTEGER},
+      CityCode = #{record.citycode,jdbcType=VARCHAR},
+      ZipCode = #{record.zipcode,jdbcType=VARCHAR},
+      MergerName = #{record.mergername,jdbcType=VARCHAR},
+      Lng = #{record.lng,jdbcType=REAL},
+      Lat = #{record.lat,jdbcType=REAL},
+      Pinyin = #{record.pinyin,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyg.entity.Region" >
+    update region
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        ParentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        ShortName = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        LevelType = #{leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null" >
+        CityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        ZipCode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergername != null" >
+        MergerName = #{mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        Lng = #{lng,jdbcType=REAL},
+      </if>
+      <if test="lat != null" >
+        Lat = #{lat,jdbcType=REAL},
+      </if>
+      <if test="pinyin != null" >
+        Pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyg.entity.Region" >
+    update region
+    set Name = #{name,jdbcType=VARCHAR},
+      ParentId = #{parentid,jdbcType=INTEGER},
+      ShortName = #{shortname,jdbcType=VARCHAR},
+      LevelType = #{leveltype,jdbcType=INTEGER},
+      CityCode = #{citycode,jdbcType=VARCHAR},
+      ZipCode = #{zipcode,jdbcType=VARCHAR},
+      MergerName = #{mergername,jdbcType=VARCHAR},
+      Lng = #{lng,jdbcType=REAL},
+      Lat = #{lat,jdbcType=REAL},
+      Pinyin = #{pinyin,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
